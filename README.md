@@ -33,13 +33,13 @@ Features
 Below you'll find a list of already existing features as well as features that are planned for
 future releases:
 
-[x] Bindings to the C-API of D-Bus (libdbus-1) about 75% done
-[x] Support for synchronous calls
-[x] Support for all known basic types
-[ ] Support for asynchronous calls
-[ ] Nice JavaFX API using Workers, Services, Callbacks and Properties
-[ ] Annotation-based method bindings
-[ ] Support for structures and arrays
+- [x] Bindings to the C-API of D-Bus (libdbus-1) about 75% done
+- [x] Support for synchronous calls
+- [x] Support for all known basic types
+- [ ] Support for asynchronous calls
+- [ ] Nice JavaFX API using Workers, Services, Callbacks and Properties
+- [ ] Annotation-based method bindings
+- [ ] Support for structures and arrays
 
 
 Example usage
