@@ -47,7 +47,7 @@
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/cathive/$fx-dbus/issues</url>
+        <url>https://github.com/cathive/fx-dbus/issues</url>
     </issueManagement>
 
     <developers>
@@ -75,7 +75,7 @@
 
     <ciManagement>
         <system>Travis CI</system>
-	<url>https://travis-ci.com/cathive/fx-dbus/</url>
+        <url>https://travis-ci.com/cathive/fx-dbus/</url>
     </ciManagement>
 
     <build>
