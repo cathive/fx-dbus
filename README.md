@@ -50,7 +50,7 @@ The Java code below shows how to use the gnome-screenshot tool via D-Bus:
 ```java
 final String destination = "org.gnome.Shell.Screenshot";
 final String path = "/org/gnome/Shell/Screenshot";
-final String interface = "org.gnome.Shell.Screenshot";
+final String iface = "org.gnome.Shell.Screenshot";
 
 // Filename that shall be used to store the screenshot.
 final String filename = File.createTempFile("screenshot", ".png").getAbsolutepath();
@@ -62,9 +62,9 @@ DBus.initialize();
 final Connection connection = Connection.getConnection(BusType.SESSION, true);
 
 // Call "SelectArea()" and use the result to call "ScreenshotArea()"
-final Message area = connection.sendWithReply(Message.newMethodCall(destination, path, interface, "SelectArea"));
+final Message area = connection.sendWithReply(Message.newMethodCall(destination, path, iface, "SelectArea"));
 if (area != null && !area.isError()) {
-    final Message ssRequest = Message.newMethodCall(destination, path, interface, "ScreenshotArea");
+    final Message ssRequest = Message.newMethodCall(destination, path, iface, "ScreenshotArea");
     for (final MethodArgument<?> arg: area) {
         ssRequest.addArguments(arg);
     }
