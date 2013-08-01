@@ -775,6 +775,77 @@ public class DBus {
 
     /**
      * <pre>[dbus/dbus-connection.h]
+     * dbus_bool_t        dbus_connection_read_write_dispatch          (DBusConnection             *connection,
+     *                                                                  int                         timeout_milliseconds);</pre>
+     */
+    @Name("dbus_connection_read_write_dispatch")
+    protected static native boolean _connectionReadWriteDispatch(Pointer<_Connection> connection,
+                                                                 int timeoutMilliseconds);
+
+    /**
+     * <pre>[dbus/dbus-connection.h]
+     * dbus_bool_t        dbus_connection_read_write                   (DBusConnection             *connection,
+     *                                                                  int                         timeout_milliseconds);</pre>
+     */
+    @Name("dbus_connection_read_write")
+    protected static native boolean _connectionReadWrite(Pointer<_Connection> connection,
+                                                         int timeoutMilliseconds);
+
+    /**
+     * <pre>[dbus/dbus-connection.h]
+     * DBusMessage*       dbus_connection_borrow_message               (DBusConnection             *connection);</pre>
+     */
+    @Name("dbus_connection_borrow_message")
+    protected static native Pointer<_Message> _connectionBorrowMessage(Pointer<_Connection> connection);
+
+    /**
+     * <pre>[dbus/dbus-connection.h]
+     * void               dbus_connection_return_message               (DBusConnection             *connection,
+     *                                                                  DBusMessage                *message);</pre>
+     */
+    @Name("dbus_connection_return_message")
+    protected static native void _connectionReturnMessage(Pointer<_Connection> connection,
+                                                          Pointer<_Message> message);
+
+    /**
+     * <pre>[dbus/dbus-connection.h]
+     * void               dbus_connection_steal_borrowed_message       (DBusConnection             *connection,
+     *                                                                  DBusMessage                *message);</pre>
+     */
+    @Name("dbus_connection_steal_borrowed_message")
+    protected static native void _connectionStealBorrowedMessage(Pointer<_Connection> connection,
+                                                                 Pointer<_Message> message);
+
+    /**
+     * <pre>[dbus/dbus-connection.h
+     * DBusMessage*       dbus_connection_pop_message                  (DBusConnection             *connection);</pre>
+     */
+    @Name("dbus_connection_pop_message")
+    protected static native Pointer<_Message> _connectionPopMessage(Pointer<_Connection> connection);
+
+    /**
+     * <pre>[dbus/dbus-connection.h
+     * DBusDispatchStatus dbus_connection_get_dispatch_status          (DBusConnection             *connection);</pre>
+     */
+    @Name("dbus_connection_get_dispatch_status")
+    protected static native DispatchStatus _connectionGetDispatchStatus(Pointer<_Connection> connection);
+
+    /**
+     * <pre>[dbus/dbus-connection.h
+     * DBusDispatchStatus dbus_connection_dispatch                     (DBusConnection             *connection);</pre>
+     */
+    @Name("dbus_connection_dispatch")
+    protected static native DispatchStatus _connectionDispatch(Pointer<_Connection> connection);
+
+    /**
+     * <pre>[dbus/dbus-connection.h
+     * dbus_bool_t        dbus_connection_has_messages_to_send         (DBusConnection *connection);</pre>
+     */
+    @Name("dbus_connection_has_messages_to_send")
+    protected static native boolean _connectionHasMessagesToSend(Pointer<_Connection> connection);
+
+    /**
+     * <pre>[dbus/dbus-connection.h]
      * dbus_bool_t        dbus_connection_send                         (DBusConnection             *connection,
      *                                                                  DBusMessage                *message,
      *                                                                  dbus_uint32_t              *client_serial);</pre>
@@ -796,6 +867,53 @@ public class DBus {
                                                              Pointer<_Message> message,
                                                              Pointer<Pointer<_PendingCall>> pendingReturn,
                                                              int timeoutMilliseconds);
+
+    /**
+     * <pre>[dbus/dbus-connection.h
+     * DBusMessage *      dbus_connection_send_with_reply_and_block    (DBusConnection             *connection,
+     *                                                                  DBusMessage                *message,
+     *                                                                  int                         timeout_milliseconds,
+     *                                                                  DBusError                  *error);</pre>
+     */
+    @Name("dbus_connection_send_with_reply_and_block")
+    protected static native Pointer<_Message> _connectionSendWithReplyAndBlock(Pointer<_Connection> connection,
+                                                                               Pointer<_Message> message,
+                                                                               int timeoutMilliseconds,
+                                                                               Pointer<_Error> error);
+
+    /**
+     * <pre>[dbus/dbus-connection.h
+     * dbus_bool_t        dbus_connection_set_watch_functions          (DBusConnection             *connection,
+     *                                                                  DBusAddWatchFunction        add_function,
+     *                                                                  DBusRemoveWatchFunction     remove_function,
+     *                                                                  DBusWatchToggledFunction    toggled_function,
+     *                                                                  void                       *data,
+     *                                                                  DBusFreeFunction            free_data_function);</pre>
+     */
+    @Name("dbus_connection_set_watch_functions")
+    protected static native boolean _connectionSetWatchFunctions(Pointer<_Connection> connection,
+                                                                 _AddWatchFunction addFunction,
+                                                                 _RemoveWatchFunction removeFunction,
+                                                                 _WatchToggledFunction toggledFunction,
+                                                                 Pointer<?> data,
+                                                                 _FreeFunction freeDataFunction);
+
+    /**
+     * <pre>[dbus/dbus-connection.h
+     * dbus_bool_t        dbus_connection_set_timeout_functions        (DBusConnection             *connection,
+     *                                                                  DBusAddTimeoutFunction      add_function,
+     *                                                                  DBusRemoveTimeoutFunction   remove_function,
+     *                                                                  DBusTimeoutToggledFunction  toggled_function,
+     *                                                                  void                       *data,
+     *                                                                  DBusFreeFunction            free_data_function);</pre>
+     */
+    @Name("dbus_connection_set_timeout_functions")
+    protected static native boolean _connectionSetTimeoutFunctions(Pointer<_Connection> connection,
+                                                                   _AddTimeoutFunction addFunction,
+                                                                   _RemoveTimeoutFunction removeFunction,
+                                                                   _TimeoutToggledFunction toggledFunction,
+                                                                   Pointer<?> data,
+                                                                   _FreeFunction freeDataFunction);
 
     // ---- dbus/dbus-error.h ------------------------------------------------------------------------------------------
 

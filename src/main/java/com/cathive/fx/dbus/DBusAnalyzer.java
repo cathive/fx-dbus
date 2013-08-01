@@ -17,8 +17,13 @@
 package com.cathive.fx.dbus;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import org.freedesktop.dbus.BusType;
+import org.freedesktop.dbus.Connection;
+import org.freedesktop.dbus.DBus;
 
 import java.util.ResourceBundle;
 
@@ -29,10 +34,24 @@ public class DBusAnalyzer extends Application {
 
     private ResourceBundle messages;
 
+    private RootPane rootPane;
+
+    // D-Bus sessions
+    private Connection sessionBusConection;
+    private Connection systemBusConnection;
+
     @Override
     public void init() throws Exception {
+
         super.init();
+
+        DBus.initialize();
+        this.sessionBusConection = Connection.getConnection(BusType.SESSION, true);
+        this.systemBusConnection = Connection.getConnection(BusType.SYSTEM, true);
+
         this.messages = ResourceBundle.getBundle(getClass().getName());
+        this.rootPane = new RootPane();
+
     }
 
     @Override
@@ -41,10 +60,33 @@ public class DBusAnalyzer extends Application {
         primaryStage.setTitle(messages.getString("app.title"));
         primaryStage.setMinWidth(640);
         primaryStage.setMinHeight(360);
-        final Scene scene = new Scene(new RootPane(this));
+
+        final FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setRoot(rootPane);
+        fxmlLoader.setResources(ResourceBundle.getBundle(DBusAnalyzer.class.getName()));
+        fxmlLoader.setLocation(getClass().getResource("RootPane.fxml"));
+        fxmlLoader.setControllerFactory(new Callback<Class<?>, Object>() {
+            @Override
+            public Object call(Class<?> aClass) {
+                if (aClass.equals(RootPane.class)) {
+                    return rootPane;
+                }
+                else throw new IllegalArgumentException("No controller for class " + aClass.getName() + " found.");
+            }
+        });
+        fxmlLoader.load();
+
+        final Scene scene = new Scene(rootPane);
+        primaryStage.setScene(scene);
 
         primaryStage.show();
 
+    }
+
+    @Override
+    public void stop() throws Exception {
+        DBus.shutdown();
+        super.stop();
     }
 
     public static void main(String... args) {

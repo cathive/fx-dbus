@@ -34,33 +34,11 @@ import java.util.ResourceBundle;
 public class RootPane extends AnchorPane
                       implements Initializable {
 
-    private DBusAnalyzer app;
-
     @FXML
     private BorderPane borderPane;
 
     public RootPane() {
         super();
-        final FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setControllerFactory(new Callback<Class<?>, Object>() {
-            @Override
-            public Object call(Class<?> aClass) {
-                return RootPane.this;
-            }
-        });
-        fxmlLoader.setResources(ResourceBundle.getBundle(DBusAnalyzer.class.getName()));
-        fxmlLoader.setLocation(getClass().getResource("RootPane.fxml"));
-        try {
-            fxmlLoader.load();
-        } catch (final IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public RootPane(final DBusAnalyzer app) {
-        this();
-        this.app = app;
     }
 
     @FXML
