@@ -42,7 +42,7 @@ future releases:
 - [ ] Support for structures and arrays
 
 
-Example usage
+Example Usage
 -------------
 
 The Java code below shows how to use the gnome-screenshot tool via D-Bus:
@@ -84,7 +84,6 @@ connection.close();
 // Cleanly shutdown dbus.
 DBus.shutdown();
 ```
-
 
 Creation of the API
 -------------------
